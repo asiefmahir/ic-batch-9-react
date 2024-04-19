@@ -16,6 +16,7 @@ function App() {
 		</div>
 	);
 }
+
 /**
  * 3 condition to be a component:
  *    1) A Component must be a function
