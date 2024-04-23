@@ -1,98 +1,43 @@
+import { useState } from "react";
+
 import "./App.css";
-import BioData from "./components/BioData";
-import Greet from "./components/Dummy";
-
-// const obj = {
-// 	a: 10,
-// 	b: 20
-// };
-
-// const {a} = obj
-
-// BioData()
-
-const bioDataInfos = [
-	{
-		id: Date.now() + "",
-		name: "Mahir Asief",
-		age: 27,
-		email: "asiefmahir1@gmail.com",
-		skills: ["React", "Redux", "NextJs", "NodeJs"],
-		interests: ["System Design", "Chess", "Football"],
-		socialLinks: [
-			{ mediaName: "Fb", mediaAddress: "fb.com/asiefmahir" },
-			{
-				mediaName: "Github",
-				mediaAddress: "github.com/asiefmahir",
-			},
-			{
-				mediaName: "LinkedIn",
-				mediaAddress: "linkedin.com/in/asiefmahir",
-			},
-		],
-	},
-	{
-		id: Date.now() + "",
-		name: "Sr Setu",
-		age: 32,
-		email: "srsetu@gmail.com",
-		skills: ["React", "Redux", "NextJs", "WP", "PHP"],
-		interests: ["System Design", "Chess", "Football", "Gaming"],
-		socialLinks: [
-			{ mediaName: "Fb", mediaAddress: "fb.com/srsetu" },
-			{
-				mediaName: "Github",
-				mediaAddress: "github.com/srsetu",
-			},
-			{
-				mediaName: "LinkedIn",
-				mediaAddress: "linkedin.com/in/srsetu",
-			},
-			{
-				mediaName: "X",
-				mediaAddress: "x.com/srsetu",
-			},
-		],
-	},
-	{
-		id: Date.now() + "",
-		name: "Saikat Mohammad",
-		age: 27,
-		email: "sm@gmail.com",
-		skills: ["React", "Redux", "NextJs", "NodeJs", "CSS"],
-		interests: ["System Design", "Chess"],
-		socialLinks: [
-			{ mediaName: "Fb", mediaAddress: "fb.com/saikatMohammad" },
-			{
-				mediaName: "Github",
-				mediaAddress: "github.com/saikatMohammad",
-			},
-			{
-				mediaName: "LinkedIn",
-				mediaAddress: "linkedin.com/in/saikatMohammad",
-			},
-		],
-	},
-];
 
 function App() {
+	// Re-Render
+	console.log("I am being invoked");
+	// State Management
+	// State Declaration / State Initialization
+	// let a = 100;
+	const [dynamicCounter, setDynamicCounter] = useState(20);
+	// console.log(setDynamicCounter, "habijabi");
+	// console.log(dynamicCounter, "dc");
+	// dynamicCounter = dynamicCounter + 100
+
+	const increaseHandler = () => {
+		setDynamicCounter(dynamicCounter + 1);
+		// setDynamicCounter === 21 + 1 === 22
+		// dynamicCounter = 21
+	};
+
+	const decreaseHandler = () => {
+		setDynamicCounter(dynamicCounter - 1);
+	};
+
+	// 1 time
 	return (
 		<div className="App">
-			<Greet name="G.R Salman" />
-			{bioDataInfos.map((bioData) => (
-				<BioData
-					key={bioData.id}
-					name={bioData.name}
-					age={bioData.age}
-					email={bioData.email}
-					skills={bioData.skills}
-					interests={bioData.interests}
-					socialLinks={bioData.socialLinks}
-				/>
-			))}
+			<nav>
+				<li>hello</li>
+				<li>Hello</li>
+			</nav>
+			<p>The value of the counter is {dynamicCounter}</p>
+			<button onClick={increaseHandler}>Increase By 1</button>
+			<button onClick={decreaseHandler}>Decrease By 1</button>
 		</div>
 	);
 }
+// document.getElementsByClassName("App").addEventListener(increaseHandler)
+// p.innerText = counter
 
 // section, div
 
