@@ -42,5 +42,8 @@
 } */
 
 .App {
-  border: 1px solid red;
+    text-align: center;
+}
+.note-item {
+  margin-bottom: 1rem;
 }
