@@ -4,15 +4,17 @@ import "./App.css";
 
 function App() {
 	const [noteTitle, setNoteTitle] = useState("");
-	const [notes, setNotes] = useState([
-		{ id: "1", title: "Note 1" },
-		{ id: "2", title: "Note 2" },
-		{ id: "3", title: "Note 3" },
-	]);
+	const [notes, setNotes] = useState([]);
+	const [editMode, setEditMode] = useState(false);
+	const [editableNote, setEditableNote] = useState(null);
 
 	const submitHandler = (event) => {
 		event.preventDefault();
 		if (noteTitle.trim() === "") return alert("Please enter valid a title");
+		editMode === false ? createHandler() : updateHandler();
+	};
+
+	const createHandler = () => {
 		const newNote = {
 			id: Date.now() + "",
 			title: noteTitle,
@@ -34,22 +36,35 @@ function App() {
 		//          ({ id: "1", title: "Note 1" }) => "1" !== "3"
 		//          ({ id: "2", title: "Note 2" }) => "2" !== "3"
 		//			({ id: "3", title: "Note 3" })  => "3" !== "3"
-		console.log(updatedNotes);
+		// console.log(updatedNotes);
 
 		setNotes(updatedNotes);
 		// notes = updatedNotes
 	};
 
-	// const changeTitleHandler = (event) => {
-	// 	console.log(event.target);
-	// 	// noteTitle = event.target.value;
-	// 	setNoteTitle(event.target.value);
-	// 	// noteTitle = event.target.value;
-	// };
+	const editHandler = (note) => {
+		setEditMode(true);
+		setNoteTitle(note.title);
+		setEditableNote(note);
+	};
+
+	const updateHandler = () => {
+		const updatedNoteList = notes.map((note) => {
+			if (note.id === editableNote.id) {
+				return { ...note, title: noteTitle };
+			}
+			return note;
+		});
+
+		setNotes(updatedNoteList);
+		setEditMode(false);
+		setEditableNote(null);
+		setNoteTitle("");
+	};
 
 	return (
 		<div className="App">
-			<form onSubmit={submitHandler}>
+			<form className={editMode ? "form" : ""} onSubmit={submitHandler}>
 				<input
 					type="text"
 					value={noteTitle}
@@ -58,13 +73,15 @@ function App() {
 						// noteTitle = event.target.value;
 					}}
 				/>
-				<button type="submit">Add Note</button>
+				<button type="submit">
+					{editMode ? "Update Note" : "Add Note"}
+				</button>
 			</form>
 			<ul>
 				{notes.map((note) => (
 					<li className="note-item" key={note.id}>
 						<span>{note.title}</span>
-						<button>Edit</button>
+						<button onClick={() => editHandler(note)}>Edit</button>
 						<button onClick={() => removeHandler(note.id)}>
 							Delete
 						</button>

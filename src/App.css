@@ -47,3 +47,8 @@
 .note-item {
   margin-bottom: 1rem;
 }
+
+.form {
+  border: 1px solid tomato;
+  padding: 10px;
+}
