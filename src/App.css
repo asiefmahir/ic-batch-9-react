@@ -48,7 +48,24 @@
   margin-bottom: 1rem;
 }
 
+.student-section {
+  display: flex;
+  justify-content: space-between;
+}
+
 .form {
+  margin-bottom: 15px;
+}
+
+.list {
   border: 1px solid tomato;
-  padding: 10px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.list-item {
+  margin-bottom: 15px;
 }

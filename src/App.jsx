@@ -3,109 +3,191 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-	const [noteTitle, setNoteTitle] = useState("");
-	const [notes, setNotes] = useState([]);
+	const [studentName, setStudentName] = useState("");
+	const [students, setStudents] = useState([
+		// { id: "1", name: "Mahir", isPresent: undefined },
+		// { id: "10", name: "Asief", isPresent: undefined },
+		// { id: "3", name: "Saikat Vau", isPresent: undefined },
+		// { id: "100", name: "Nahid Vai", isPresent: undefined },
+	]);
+	// console.log(students.filter((student) => student.isPresent === true));
+
+	// students[0].name = "asasa"
 	const [editMode, setEditMode] = useState(false);
-	const [editableNote, setEditableNote] = useState(null);
+	const [editableStudent, setEditableStudent] = useState(null);
+
+	// Derived State
+	const presentList = students.filter(
+		(student) => student.isPresent === true,
+	);
+
+	const absentList = students.filter(
+		(student) => student.isPresent === false,
+	);
 
 	const submitHandler = (event) => {
 		event.preventDefault();
-		if (noteTitle.trim() === "") return alert("Please enter valid a title");
-		editMode === false ? createHandler() : updateHandler();
+		if (studentName.trim() === "")
+			return alert(`Please provide a valid name`);
+
+		editMode ? updateHandler() : createHandler();
 	};
 
 	const createHandler = () => {
-		const newNote = {
+		const newStudent = {
 			id: Date.now() + "",
-			title: noteTitle,
+			name: studentName,
+			isPresent: undefined,
 		};
-		// notes.push(newNote);
-		// notes[1].title = "abc"
-		// noteTitle = ""
-		setNotes([...notes, newNote]);
-		// notes = [newNote, ...notes]
-		setNoteTitle("");
-		// noteTitle = ""
+		// students.push(newStudent)
+		setStudents([...students, newStudent]);
+		setStudentName("");
 	};
-
-	const removeHandler = (noteId) => {
-		// noteId === "3"
-		// notes.splice()
-		//updatedNotes = [{ id: "1", title: "Note 1" }, { id: "2", title: "Note 2" }]
-		const updatedNotes = notes.filter((note) => note.id !== noteId);
-		//          ({ id: "1", title: "Note 1" }) => "1" !== "3"
-		//          ({ id: "2", title: "Note 2" }) => "2" !== "3"
-		//			({ id: "3", title: "Note 3" })  => "3" !== "3"
-		// console.log(updatedNotes);
-
-		setNotes(updatedNotes);
-		// notes = updatedNotes
-	};
-
-	const editHandler = (note) => {
+	const editHandler = (student) => {
 		setEditMode(true);
-		setNoteTitle(note.title);
-		setEditableNote(note);
+		setStudentName(student.name);
+		setEditableStudent(student);
 	};
 
 	const updateHandler = () => {
-		const updatedNoteList = notes.map((note) => {
-			if (note.id === editableNote.id) {
-				return { ...note, title: noteTitle };
+		const updatedStudentList = students.map((student) => {
+			if (student.id === editableStudent.id) {
+				return { ...student, name: studentName };
 			}
-			return note;
+			return student;
+		});
+		setStudents(updatedStudentList);
+		// students = updatedStudentList
+		setStudentName("");
+		setEditMode(false);
+		setEditableStudent(null);
+	};
+
+	const removeHandler = (studentId) => {
+		const updatedStudentList = students.filter(
+			(student) => student.id !== studentId,
+		);
+
+		setStudents(updatedStudentList);
+	};
+
+	const sendToPresentList = (student) => {
+		if (student.isPresent !== undefined) {
+			return alert(
+				`The student is already in the ${
+					student.isPresent === true ? "Present List" : "Absent"
+				}`,
+			);
+		}
+		// student.isPresent = true
+		const updatedStudentList = students.map((item) => {
+			if (item.id === student.id) {
+				return { ...item, isPresent: true };
+			}
+			return item;
 		});
 
-		setNotes(updatedNoteList);
-		setEditMode(false);
-		setEditableNote(null);
-		setNoteTitle("");
+		setStudents(updatedStudentList);
+	};
+
+	const sendToAbsentList = (student) => {
+		if (student.isPresent !== undefined) {
+			return alert(
+				`The student is already in the ${
+					student.isPresent === true ? "Present List" : "Absent List"
+				}`,
+			);
+		}
+		// student.isPresent = true
+		const updatedStudentList = students.map((item) => {
+			if (item.id === student.id) {
+				return { ...item, isPresent: false };
+			}
+			return item;
+		});
+
+		setStudents(updatedStudentList);
+	};
+
+	const toggleList = (student) => {
+		const updatedStudentList = students.map((item) => {
+			if (item.id === student.id) {
+				return { ...item, isPresent: !item.isPresent };
+			}
+			return item;
+		});
+
+		setStudents(updatedStudentList);
 	};
 
 	return (
 		<div className="App">
-			<form className={editMode ? "form" : ""} onSubmit={submitHandler}>
+			<form onSubmit={submitHandler} className="form">
 				<input
 					type="text"
-					value={noteTitle}
-					onChange={(event) => {
-						setNoteTitle(event.target.value);
-						// noteTitle = event.target.value;
-					}}
+					value={studentName}
+					onChange={(e) => setStudentName(e.target.value)}
 				/>
 				<button type="submit">
-					{editMode ? "Update Note" : "Add Note"}
+					{editMode ? "Update Student" : "Create Student"}
 				</button>
 			</form>
-			<ul>
-				{notes.map((note) => (
-					<li className="note-item" key={note.id}>
-						<span>{note.title}</span>
-						<button onClick={() => editHandler(note)}>Edit</button>
-						<button onClick={() => removeHandler(note.id)}>
-							Delete
-						</button>
-					</li>
-				))}
-			</ul>
+			<div className="student-section">
+				<div className="list all-list">
+					<h2>All Students</h2>
+					<ul>
+						{students.map((student) => (
+							<li className="list-item" key={student.id}>
+								<span>{student.name}</span>
+								<button onClick={() => editHandler(student)}>
+									Edit
+								</button>
+								<button
+									onClick={() => removeHandler(student.id)}
+								>
+									Remove
+								</button>
+								<button
+									onClick={() => sendToPresentList(student)}
+								>
+									Send to Present List
+								</button>
+								<button
+									onClick={() => sendToAbsentList(student)}
+								>
+									Send to Absent List
+								</button>
+							</li>
+						))}
+					</ul>
+				</div>
+				<div className="list present-list">
+					<h2>Present Students</h2>
+					{students
+						.filter((student) => student.isPresent === true)
+						.map((student) => (
+							<li className="list-item" key={student.id}>
+								<span>{student.name}</span>
+								<button onClick={() => toggleList(student)}>
+									Accidentally Added
+								</button>
+							</li>
+						))}
+				</div>
+				<div className="list absent-list">
+					<h2>Absent Students</h2>
+					{absentList.map((student) => (
+						<li className="list-item" key={student.id}>
+							<span>{student.name}</span>
+							<button onClick={() => toggleList(student)}>
+								Accidentally Added
+							</button>
+						</li>
+					))}
+				</div>
+			</div>
 		</div>
 	);
 }
-
-// const increaseHandler = (event) => {};
-
-// document.getElementsByClassName("App").addEventListener(increaseHandler);
-// p.innerText = counter;
-
-// section, div
-
-// App()
-
-/**
- * 3 condition to be a component:
- *    1) A Component must be a function
- *    2) That function should return "something"
- *    3) That "something" should be some html-ish code (JSX)
- */
 
 export default App;
