@@ -37,4 +37,9 @@ const StudentSection = (props) => {
 	);
 };
 
+// const arr = [1, 2, 3, 4];
+
+// const callback = (el) => el * 2;
+// arr.map(callback);
+
 export default StudentSection;

@@ -10,10 +10,11 @@ function App() {
 	const [editMode, setEditMode] = useState(false);
 	const [editableStudent, setEditableStudent] = useState(null);
 
+	// StudentForm(studentName, students)
 	return (
 		<div className="App">
 			<StudentForm
-				studentName={studentName}
+				name={studentName}
 				setStudentName={setStudentName}
 				students={students}
 				setStudents={setStudents}
@@ -22,6 +23,7 @@ function App() {
 				editableStudent={editableStudent}
 				setEditableStudent={setEditableStudent}
 			/>
+			{/* <img src="" alt="" /> */}
 			<StudentSection
 				setStudentName={setStudentName}
 				students={students}

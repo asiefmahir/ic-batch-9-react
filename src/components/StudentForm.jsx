@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 const StudentForm = (props) => {
 	const {
 		studentName,
@@ -9,6 +10,7 @@ const StudentForm = (props) => {
 		setEditMode,
 		setEditableStudent,
 	} = props;
+	// const [studentName, setStudentName] = useState("");
 
 	const submitHandler = (event) => {
 		event.preventDefault();
