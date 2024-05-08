@@ -1,14 +1,19 @@
 /* eslint-disable react/prop-types */
-const PresentStudentList = (props) => {
+
+import { useContext } from "react";
+import { StudentContext } from "../contexts/Student";
+
+const PresentStudentList = () => {
+	const { students, toggleList } = useContext(StudentContext);
 	return (
 		<div className="list present-list">
 			<h2>Present Students</h2>
-			{props.students
+			{students
 				.filter((student) => student.isPresent === true)
 				.map((student) => (
 					<li className="list-item" key={student.id}>
 						<span>{student.name}</span>
-						<button onClick={() => props.toggleList(student)}>
+						<button onClick={() => toggleList(student)}>
 							Accidentally Added
 						</button>
 					</li>

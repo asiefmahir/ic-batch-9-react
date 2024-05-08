@@ -1,63 +1,16 @@
 /* eslint-disable react/prop-types */
-const AllStudentList = (props) => {
+import { useContext } from "react";
+import { StudentContext } from "../contexts/Student";
+
+const AllStudentList = () => {
 	const {
-		setStudentName,
 		students,
-		setStudents,
-		setEditMode,
-		setEditableStudent,
-	} = props;
-	const editHandler = (student) => {
-		setEditMode(true);
-		setStudentName(student.name);
-		setEditableStudent(student);
-	};
+		editHandler,
+		removeHandler,
+		sendToAbsentList,
+		sendToPresentList,
+	} = useContext(StudentContext);
 
-	const removeHandler = (studentId) => {
-		const updatedStudentList = students.filter(
-			(student) => student.id !== studentId,
-		);
-
-		setStudents(updatedStudentList);
-	};
-
-	const sendToPresentList = (student) => {
-		if (student.isPresent !== undefined) {
-			return alert(
-				`The student is already in the ${
-					student.isPresent === true ? "Present List" : "Absent"
-				}`,
-			);
-		}
-		// student.isPresent = true
-		const updatedStudentList = students.map((item) => {
-			if (item.id === student.id) {
-				return { ...item, isPresent: true };
-			}
-			return item;
-		});
-
-		setStudents(updatedStudentList);
-	};
-
-	const sendToAbsentList = (student) => {
-		if (student.isPresent !== undefined) {
-			return alert(
-				`The student is already in the ${
-					student.isPresent === true ? "Present List" : "Absent List"
-				}`,
-			);
-		}
-		// student.isPresent = true
-		const updatedStudentList = students.map((item) => {
-			if (item.id === student.id) {
-				return { ...item, isPresent: false };
-			}
-			return item;
-		});
-
-		setStudents(updatedStudentList);
-	};
 	return (
 		<div className="list all-list">
 			<h2>All Students</h2>
