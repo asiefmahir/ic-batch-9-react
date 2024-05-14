@@ -1,8 +1,11 @@
-import { useReducer, useState } from "react";
+import { useReducer } from "react";
 
 // useReducer -> use Reducer -> reducer function
 
 const counterReducer = (stateValue, action) => {
+	// action can be anything -> {type: "", payload:  }
+	// action.payload.price;
+	// action.payload.title;
 	// stateValue = 100
 	// action = "ADD"
 
@@ -10,7 +13,7 @@ const counterReducer = (stateValue, action) => {
 	// 	return stateValue + 1;
 	// } else if (action === "DEDUCT") {
 	// 	return stateValue - 1;
-	// }
+	//}
 	console.log(stateValue, "current State value");
 	console.log(action, "Argument of Dispatch");
 
@@ -27,7 +30,10 @@ const counterReducer = (stateValue, action) => {
 	}
 };
 
-const initStateOfTheme = { bgColor: "#fff", textColor: "#000" };
+const initStateOfTheme = { bgColor: "#fff", textColor: "#000" }; // #00FFGG
+
+initStateOfTheme.textColor = "green"; // #00FFGG
+
 // initStateOfTheme
 
 const themeReducer = (state, action) => {
@@ -58,6 +64,13 @@ const App2 = () => {
 		themeReducer,
 		initStateOfTheme,
 	);
+
+	const increaseCounter = (value) => {
+		dispatchCounterAction({
+			type: "ADD",
+			value: value,
+		});
+	};
 
 	// const handler = () => {
 	//     dispatch(counter + 1)
@@ -143,11 +156,7 @@ const App2 = () => {
 			<hr />
 			<div className="counter-app">
 				<p>The value of the counter is {counter}</p>
-				<button
-					onClick={() =>
-						dispatchCounterAction({ type: "ADD", value: 1 })
-					}
-				>
+				<button onClick={() => increaseCounter(1)}>
 					Increase By 1
 				</button>
 				<button
