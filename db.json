@@ -1,42 +1,8 @@
 {
   "notes": [
     {
-      "id": "1716047641930",
-      "title": "another note"
-    },
-    {
-      "id": "1716047781365",
-      "title": "note 100"
-    },
-    {
-      "id": "1716047899271",
-      "title": "note 200"
-    },
-    {
-      "id": "1716047949127",
-      "title": "new 9"
-    },
-    {
-      "id": "1716048145628",
-      "title": "new 4"
-    },
-    {
-      "id": "1716048148387",
-      "title": "new 8"
-    },
-    {
-      "id": "1716049019561",
-      "title": "amader new note"
-    }
-  ],
-  "students": [
-    {
-      "id": "456",
-      "name": "Salman vai"
-    },
-    {
-      "id": "452",
-      "name": "Mridul vai"
+      "title": "note 2",
+      "id": 2
     }
   ]
 }
