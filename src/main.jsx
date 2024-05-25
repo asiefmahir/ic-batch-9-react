@@ -4,6 +4,12 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import { rootRouter } from "./router/router.jsx";
 
+import CartProvider from "./contexts/Cart.jsx";
+
 import "./index.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={rootRouter} />);
+root.render(
+	<CartProvider>
+		<RouterProvider router={rootRouter} />
+	</CartProvider>,
+);
