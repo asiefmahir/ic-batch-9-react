@@ -20,6 +20,8 @@ export const rootRouter = createBrowserRouter([
 			{ path: "/posts/:postId", element: <PostDetails /> },
 			{ path: "/counter-app-1", element: <CounterApp /> },
 		],
+		// posts/5
+		// posts/4
 	},
 
 	// "posts/1"

@@ -1,9 +1,11 @@
-import { useContext } from "react";
-import { CartContext } from "../contexts/Cart";
+import { useSelector, useDispatch } from "react-redux";
+
 import CartItem from "../components/CartItem";
 
 const Cart = () => {
-	const { cart, dispatch } = useContext(CartContext);
+	const cart = useSelector((storeState) => storeState.cart);
+	const dispatch = useDispatch();
+
 	let totalPrice = 0;
 	cart.forEach((item) => (totalPrice += item.quantity * item.price));
 	return (

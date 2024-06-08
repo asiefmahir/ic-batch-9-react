@@ -34,6 +34,9 @@ export const cartReducer = (state = [], action) => {
 				}
 				return item;
 			});
+
+			// const nums = [1, 20, 30];÷
+			// const newArr = nums.map(num => num * 2);
 			return updatedState;
 		}
 		case "CLEAR_CART": {

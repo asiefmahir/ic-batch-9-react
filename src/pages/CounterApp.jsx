@@ -1,41 +1,36 @@
-import { useState, useCallback } from "react";
-import Title from "../components/Title";
-import Button from "../components/Button";
+import { useSelector, useDispatch } from "react-redux";
 
 const CounterApp = () => {
-	console.log("Counter app Rendering");
-	const [counter, setCounter] = useState(0);
-	const [counter2, setCounter2] = useState(7);
-	const [counter3, setCounter3] = useState(10);
-
-	const increaseHandler = useCallback(() => {
-		setCounter((currVal) => currVal + 1);
-	}, []); // #555ffj
-
-	const increaseHandler2 = useCallback(() => {
-		setCounter2((currVal) => currVal + 7);
-	}, []); // #8899nn
+	const counter = useSelector((storeState) => storeState.counter);
+	const dispatch = useDispatch();
+	// console.log(janiNah, "janiNah");
 	return (
 		<div>
-			<Title />
-			<div className="counter-app-1">
-				<h3>1st Counter App</h3>
-				<p>The value of the counter is {counter}</p>
-				<Button clickHandler={increaseHandler} />
-			</div>
-			<hr />
-			<div className="counter-app-2">
-				<h3>2nd Counter App</h3>
-				<p>The value of the counter is {counter2}</p>
-				<Button clickHandler={increaseHandler2} />
-			</div>
-			<div className="counter-app-3">
-				<h3>2nd Counter App</h3>
-				<p>The value of the counter is {counter3}</p>
-				<button onClick={() => setCounter3(counter3 + 10)}>
-					Increase By 10
-				</button>
-			</div>
+			<p>The value of the counter is {counter}</p>
+			<button
+				onClick={() =>
+					dispatch({ type: "counter/incremented", payload: 1 })
+				}
+			>
+				Increase By 1
+			</button>
+			<button
+				onClick={() => dispatch({ type: "decremented", payload: 1 })}
+			>
+				Decrease By 1
+			</button>
+			<button
+				onClick={() =>
+					dispatch({ type: "counter/incremented", payload: 5 })
+				}
+			>
+				Increase By 5
+			</button>
+			<button
+				onClick={() => dispatch({ type: "decremented", payload: 3 })}
+			>
+				Decrease By 3
+			</button>
 		</div>
 	);
 };

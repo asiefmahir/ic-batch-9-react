@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
-import { useState, useContext } from "react";
-import { CartContext } from "../contexts/Cart";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 function CartItem({ item }) {
 	const [itemQuantity, setItemQuantity] = useState(item.quantity);
-
-	const { dispatch } = useContext(CartContext);
+	const dispatch = useDispatch();
 
 	return (
 		<tr>
