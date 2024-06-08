@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
+import ListOfPosts from "../components/ListOfPosts";
 
 const PostList = () => {
 	const {
@@ -15,13 +16,7 @@ const PostList = () => {
 			{errorMessage && (
 				<p>Some Error Occurred. try to navigate to the other pages</p>
 			)}
-			<ul>
-				{posts.map((post) => (
-					<li key={post.id}>
-						<Link to={`/posts/${post.id}`}>{post.title}</Link>
-					</li>
-				))}
-			</ul>
+			<ListOfPosts posts={posts} />
 		</div>
 	);
 };

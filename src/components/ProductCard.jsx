@@ -1,16 +1,10 @@
 /* eslint-disable react/prop-types */
-
-import { useContext } from "react";
-import { CartContext } from "../contexts/Cart";
+import { useDispatch } from "react-redux";
 
 const ProductCard = ({ product }) => {
-	const { dispatch } = useContext(CartContext);
+	const dispatch = useDispatch();
 	const addToCartHandler = () => {
-		dispatch({
-			type: "ADD_TO_CART",
-			payload: product,
-		});
-		alert(`${product.title} added to cart`);
+		dispatch({ type: "ADD_TO_CART", payload: product });
 	};
 	return (
 		<div className="ingredient">

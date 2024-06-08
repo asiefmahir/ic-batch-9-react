@@ -21,6 +21,9 @@ function Nav() {
 						<li>
 							<Link to="/counter-app-1">Counter App</Link>
 						</li>
+						<li>
+							<Link to="/counter-app-2">Counter App</Link>
+						</li>
 					</ul>
 				</nav>
 			</div>
