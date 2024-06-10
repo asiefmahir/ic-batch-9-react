@@ -1,10 +1,21 @@
 /* eslint-disable react/prop-types */
 import { useDispatch } from "react-redux";
+import { addToCart } from "../store/action-creators/cart";
 
 const ProductCard = ({ product }) => {
 	const dispatch = useDispatch();
 	const addToCartHandler = () => {
-		dispatch({ type: "ADD_TO_CART", payload: product });
+		dispatch(addToCart(product));
+		/**
+		 * {
+		 *      type: "ADD_TO_CART",
+		 *      payload: product
+		 * }
+		 */
+		// dispatch({
+		//  *      type: "ADD_TO_CART",
+		//  *      payload: product
+		//  * })
 	};
 	return (
 		<div className="ingredient">

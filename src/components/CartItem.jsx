@@ -1,6 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import {
+	modifyQuantityOfAnItem,
+	removeItemFromCart,
+} from "../store/action-creators/cart";
 
 function CartItem({ item }) {
 	const [itemQuantity, setItemQuantity] = useState(item.quantity);
@@ -29,13 +33,12 @@ function CartItem({ item }) {
 						type="button"
 						onClick={() => {
 							if (itemQuantity > 1) {
-								dispatch({
-									type: "MODIFY_QUANTITY_OF_AN_ITEM",
-									payload: {
+								dispatch(
+									modifyQuantityOfAnItem({
 										id: item.id,
 										quantity: itemQuantity - 1,
-									},
-								});
+									}),
+								);
 								setItemQuantity(itemQuantity - 1);
 							} else {
 								alert(`Quantity should not be less than 1`);
@@ -52,13 +55,12 @@ function CartItem({ item }) {
 						min="1"
 						onChange={(event) => {
 							console.log(typeof event.target.value);
-							dispatch({
-								type: "MODIFY_QUANTITY_OF_AN_ITEM",
-								payload: {
+							dispatch(
+								modifyQuantityOfAnItem({
 									id: item.id,
 									quantity: Number(event.target.value),
-								},
-							});
+								}),
+							);
 							setItemQuantity(Number(event.target.value));
 						}}
 					/>
@@ -67,13 +69,12 @@ function CartItem({ item }) {
 						data-action="add"
 						type="button"
 						onClick={() => {
-							dispatch({
-								type: "MODIFY_QUANTITY_OF_AN_ITEM",
-								payload: {
+							dispatch(
+								modifyQuantityOfAnItem({
 									id: item.id,
 									quantity: itemQuantity + 1,
-								},
-							});
+								}),
+							);
 							setItemQuantity(itemQuantity + 1);
 						}}
 					>
@@ -84,12 +85,7 @@ function CartItem({ item }) {
 			<td>$ {item.price * item.quantity}</td>
 			<td>
 				<button
-					onClick={() =>
-						dispatch({
-							type: "REMOVE_ITEM_FROM_CART",
-							payload: item.id,
-						})
-					}
+					onClick={() => dispatch(removeItemFromCart(item.id))}
 					className="cross-icon"
 				>
 					x

@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 
 import CartItem from "../components/CartItem";
+import { clearCart } from "../store/action-creators/cart";
 
 const Cart = () => {
 	const cart = useSelector((storeState) => storeState.cart);
@@ -38,7 +39,7 @@ const Cart = () => {
 				</h2>
 				<div className="mt-50">
 					<button
-						onClick={() => dispatch({ type: "CLEAR_CART" })}
+						onClick={() => dispatch(clearCart())}
 						type="button"
 						className="btn-big"
 					>
@@ -49,5 +50,8 @@ const Cart = () => {
 		</>
 	);
 };
+
+// {type: "SOME"}
+// {type: "", payload:}
 
 export default Cart;
