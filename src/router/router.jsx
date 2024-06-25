@@ -7,6 +7,8 @@ import PostList from "../pages/PostList";
 import UserList from "../pages/UserList";
 import PostDetails from "../pages/PostDetails";
 import CounterApp from "../pages/CounterApp";
+import AddProduct from "../pages/AddProductForm";
+import AllProducts from "../pages/AllProducts";
 
 export const rootRouter = createBrowserRouter([
 	{
@@ -19,6 +21,8 @@ export const rootRouter = createBrowserRouter([
 			{ path: "/users", element: <UserList /> },
 			{ path: "/posts/:postId", element: <PostDetails /> },
 			{ path: "/counter-app-1", element: <CounterApp /> },
+			{ path: "/add-product", element: <AddProduct /> },
+			{ path: "/all-products", element: <AllProducts /> },
 		],
 		// posts/5
 		// posts/4
