@@ -1,16 +1,18 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createProduct } from "../store/reducers/product";
+
+import { useCreateProductMutation } from "../store/features/apiSlice";
+
+const initProduct = {
+	title: "",
+	description: "",
+	price: "",
+	image: "",
+};
 
 const AddProduct = () => {
-	const dispatch = useDispatch();
+	const [product, setProduct] = useState(initProduct);
 
-	const [product, setProduct] = useState({
-		title: "",
-		description: "",
-		price: "",
-		image: "",
-	});
+	const [addProduct] = useCreateProductMutation();
 
 	const handleChange = (e) => {
 		console.log(e.target.name);
@@ -20,7 +22,9 @@ const AddProduct = () => {
 
 	const submitHandler = (e) => {
 		e.preventDefault();
-		dispatch(createProduct(product));
+		addProduct(product);
+		setProduct(initProduct);
+		// useCreateProductMutation()
 	};
 
 	return (
@@ -36,6 +40,7 @@ const AddProduct = () => {
 			>
 				<p>Title</p>
 				<input
+					value={product.title}
 					type="text"
 					name="title"
 					required
@@ -45,6 +50,7 @@ const AddProduct = () => {
 				<br />
 				<p>Description</p>
 				<input
+					value={product.description}
 					type="text"
 					name="description"
 					required
@@ -54,6 +60,7 @@ const AddProduct = () => {
 				<br />
 				<p>Price</p>
 				<input
+					value={product.price}
 					type="number"
 					name="price"
 					required
@@ -63,6 +70,7 @@ const AddProduct = () => {
 				<br />
 				<p>Image</p>
 				<input
+					value={product.image}
 					type="text"
 					name="image"
 					required

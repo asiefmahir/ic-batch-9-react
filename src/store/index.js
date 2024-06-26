@@ -25,16 +25,18 @@ import { counterReducer } from "./reducers/counter";
 import cartSlice from "./reducers/cart";
 import { postReducer } from "./reducers/post";
 import { userReducer } from "./reducers/user";
-import productSlice from "./reducers/product";
+import { rootApi } from "./features/apiSlice";
 
 const rootReducer = {
 	cart: cartSlice.reducer,
 	counter: counterReducer,
 	post: postReducer,
 	user: userReducer,
-	product: productSlice.reducer,
+	[rootApi.reducerPath]: rootApi.reducer,
 };
 
 export const ourStore = configureStore({
 	reducer: rootReducer,
+	middleware: (getDefaultMiddleWare) =>
+		getDefaultMiddleWare().concat(rootApi.middleware),
 });
