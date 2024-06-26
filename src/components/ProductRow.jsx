@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
-import { useDispatch } from "react-redux";
-import { removeProduct } from "../store/reducers/product";
+import { useRemoveProductMutation } from "../store/features/apiSlice";
 function ProductRow({ item }) {
-	const dispatch = useDispatch();
+	const [deleteProduct] = useRemoveProductMutation();
 
 	const removeHandler = () => {
-		dispatch(removeProduct(item.id));
+		deleteProduct(item.id);
 	};
 	return (
 		<tr className="product-row d-flex justify-content-around align-items-center">

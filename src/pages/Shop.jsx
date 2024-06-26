@@ -1,18 +1,22 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchProducts } from "../store/reducers/product";
+/* eslint-disable no-unused-vars */
+import { useGetAllProductsQuery } from "../store/features/apiSlice";
 
 import ProductCard from "../components/ProductCard";
 
 const Shop = () => {
-	const { isLoading, errorMessage, products } = useSelector(
-		(storeState) => storeState.product,
-	);
-	const dispatch = useDispatch();
-
-	useEffect(() => {
-		dispatch(fetchProducts());
-	}, []);
+	const {
+		isLoading,
+		isFetching,
+		isError,
+		error,
+		data: products,
+	} = useGetAllProductsQuery();
+	if (isFetching) {
+		return <h2>Data is Loading</h2>;
+	}
+	if (isError) {
+		return <p>{error.message}</p>;
+	}
 	return (
 		<div>
 			<div className="page-banner">
