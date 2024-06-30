@@ -1,6 +1,6 @@
 import ProductList from "../components/ProductList";
 
-import { useGetAllProductsQuery } from "../store/features/apiSlice";
+import { useGetAllProductsQuery } from "../store/features/products/productApi";
 
 const AllProducts = () => {
 	const { data: products } = useGetAllProductsQuery();

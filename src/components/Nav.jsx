@@ -16,7 +16,7 @@ function Nav() {
 							<Link to="/posts">PostList</Link>
 						</li>
 						<li>
-							<Link to="/users">UserList</Link>
+							<Link to="/all-notes">Note List</Link>
 						</li>
 						<li>
 							<Link to="/counter-app-1">Counter App</Link>

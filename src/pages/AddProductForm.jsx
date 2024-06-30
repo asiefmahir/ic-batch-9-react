@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useCreateProductMutation } from "../store/features/apiSlice";
+import { useCreateProductMutation } from "../store/features//products/productApi";
 
 const initProduct = {
 	title: "",
