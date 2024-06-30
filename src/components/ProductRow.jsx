@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useRemoveProductMutation } from "../store/features/products/productApi";
+
+import { useRemoveProduct } from "../hooks/server-states/products";
+
 function ProductRow({ item }) {
-	const [deleteProduct] = useRemoveProductMutation();
+	const removeMutation = useRemoveProduct();
 
 	const removeHandler = () => {
-		deleteProduct(item.id);
+		removeMutation.mutate(item.id);
 	};
 	return (
 		<tr className="product-row d-flex justify-content-around align-items-center">
