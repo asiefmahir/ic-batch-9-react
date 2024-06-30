@@ -1,9 +1,6 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { rootApi } from "../api/apiSlice";
 
-export const rootApi = createApi({
-	reducerPath: "rootApi",
-	baseQuery: fetchBaseQuery({ baseUrl: `http://localhost:3000/` }),
-	tagTypes: ["products", "notes"],
+export const productApi = rootApi.injectEndpoints({
 	endpoints: (builder) => ({
 		getAllProducts: builder.query({
 			query: () => `products`,
@@ -35,4 +32,4 @@ export const {
 	useGetAllProductsQuery,
 	useCreateProductMutation,
 	useRemoveProductMutation,
-} = rootApi;
+} = productApi;

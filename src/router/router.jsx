@@ -9,6 +9,7 @@ import PostDetails from "../pages/PostDetails";
 import CounterApp from "../pages/CounterApp";
 import AddProduct from "../pages/AddProductForm";
 import AllProducts from "../pages/AllProducts";
+import NoteList from "../pages/NoteList";
 
 export const rootRouter = createBrowserRouter([
 	{
@@ -23,6 +24,7 @@ export const rootRouter = createBrowserRouter([
 			{ path: "/counter-app-1", element: <CounterApp /> },
 			{ path: "/add-product", element: <AddProduct /> },
 			{ path: "/all-products", element: <AllProducts /> },
+			{ path: "/all-notes", element: <NoteList /> },
 		],
 		// posts/5
 		// posts/4

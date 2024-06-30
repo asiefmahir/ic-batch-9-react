@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useRemoveProductMutation } from "../store/features/apiSlice";
+import { useRemoveProductMutation } from "../store/features/products/productApi";
 function ProductRow({ item }) {
 	const [deleteProduct] = useRemoveProductMutation();
 

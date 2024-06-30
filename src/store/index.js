@@ -25,7 +25,7 @@ import { counterReducer } from "./reducers/counter";
 import cartSlice from "./reducers/cart";
 import { postReducer } from "./reducers/post";
 import { userReducer } from "./reducers/user";
-import { rootApi } from "./features/apiSlice";
+import { rootApi } from "./features/api/apiSlice";
 
 const rootReducer = {
 	cart: cartSlice.reducer,
