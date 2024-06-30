@@ -1,16 +1,10 @@
 /* eslint-disable no-unused-vars */
-import { useGetAllProductsQuery } from "../store/features/products/productApi";
 
 import ProductCard from "../components/ProductCard";
+import { useGetAllProducts } from "../hooks/server-states/products";
 
 const Shop = () => {
-	const {
-		isLoading,
-		isFetching,
-		isError,
-		error,
-		data: products,
-	} = useGetAllProductsQuery();
+	const { isFetching, isError, error, products } = useGetAllProducts();
 	if (isFetching) {
 		return <h2>Data is Loading</h2>;
 	}

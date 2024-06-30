@@ -1,9 +1,8 @@
 import ProductList from "../components/ProductList";
-
-import { useGetAllProductsQuery } from "../store/features/products/productApi";
+import { useGetAllProducts } from "../hooks/server-states/products";
 
 const AllProducts = () => {
-	const { data: products } = useGetAllProductsQuery();
+	const { products } = useGetAllProducts();
 	return (
 		<main>
 			<div>
