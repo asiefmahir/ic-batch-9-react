@@ -11,6 +11,7 @@ export const useGetAllProducts = () => {
 		queryFn: () =>
 			fetch(`http://localhost:3000/products`).then((res) => res.json()),
 		refetchOnMount: false,
+		refetchInactive: true,
 	});
 
 	return {
@@ -33,9 +34,9 @@ export const useCreateProduct = () => {
 					"Content-type": "application/json",
 				},
 			}),
-		onSuccess: () => {
+		onSuccess: async () => {
 			console.log("created successfully");
-			client.invalidateQueries("products");
+			await client.refetchQueries("products");
 		},
 	});
 
