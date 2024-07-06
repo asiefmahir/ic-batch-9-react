@@ -28,6 +28,11 @@ function Nav() {
 						<li>
 							<Link to="/all-products">All Products</Link>
 						</li>
+						<li>
+							<Link to="/class-compo">
+								Class Component Example
+							</Link>
+						</li>
 					</ul>
 				</nav>
 			</div>

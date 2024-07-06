@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useEffect } from "react";
 
 import { useRemoveProduct } from "../hooks/server-states/products";
 
@@ -8,6 +9,13 @@ function ProductRow({ item }) {
 	const removeHandler = () => {
 		removeMutation.mutate(item.id);
 	};
+
+	useEffect(() => {
+		console.log("");
+		return () => {
+			console.log("I am unmounting");
+		};
+	}, []);
 	return (
 		<tr className="product-row d-flex justify-content-around align-items-center">
 			<td>
