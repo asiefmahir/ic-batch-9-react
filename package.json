@@ -1,20 +1,21 @@
 {
-  "name": "ic-batch-9-react",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.5"
-  },
-  "devDependencies": {
-    "eslint": "^8",
-    "eslint-config-next": "14.2.5"
-  }
+	"name": "ic-batch-9-react",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"start-fake-server": "json-server --watch db.json -p 4000",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"react": "^18",
+		"react-dom": "^18",
+		"next": "14.2.5"
+	},
+	"devDependencies": {
+		"eslint": "^8",
+		"eslint-config-next": "14.2.5"
+	}
 }

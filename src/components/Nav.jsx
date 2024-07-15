@@ -15,6 +15,9 @@ function Nav() {
 						<li>
 							<Link href="/posts">PostList</Link>
 						</li>
+						<li>
+							<Link href="/add-product">Add product</Link>
+						</li>
 					</ul>
 				</nav>
 			</div>
