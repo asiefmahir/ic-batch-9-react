@@ -1,6 +1,6 @@
-import ProductCard from "@/components/ProductCard";
+import GridLayout from "../components/GridLayout";
 
-const Shop = ({ products }) => {
+const Shop = async () => {
 	return (
 		<div>
 			<div className="page-banner">
@@ -18,24 +18,12 @@ const Shop = ({ products }) => {
 						</div>
 					</div>
 					<div className="section__content">
-						<div className="grid three">
-							{products.map((product) => (
-								<ProductCard
-									key={product.id}
-									product={product}
-								/>
-							))}
-						</div>
+						<GridLayout />
 					</div>
 				</div>
 			</div>
 		</div>
 	);
 };
-export async function getStaticProps() {
-	console.log("GetStaticProps from Shop page");
-	const res = await fetch("http://localhost:4000/products");
-	const products = await res.json();
-	return { props: { products } };
-}
+
 export default Shop;
