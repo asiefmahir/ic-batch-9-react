@@ -2,31 +2,36 @@
 import connectDb from "@/utils/connectDb";
 
 import GridLayout from "@/app/components/home/GridLayout";
-// import Pagination from "@/app/components/product/Pagination";
+import Pagination from "@/app/components/product/Pagination";
 
 const getProducts = async (searchParams) => {
 	const searchQuery = new URLSearchParams({
 		page: searchParams?.page || 1,
 	}).toString();
+	// console.log(searchQuery, "sQueyr");
 
 	const res = await fetch(
 		`http://localhost:3000/api/product?${searchQuery}`,
-		// http://localhost:3000/api/product?page=2
 		{
 			method: "GET",
+			next: { revalidate: 1 },
 		},
 	);
 	if (!res.ok) {
 		throw new Error("Failed to fetch products");
 	}
 	const data = await res.json();
-	return data;
+	return {
+		products: data?.products,
+		currentPage: data?.currentPage,
+		totalPages: data?.totalPages,
+	};
 };
 export default async function Home({ searchParams }) {
-	console.log(searchParams, "from home page");
+	// console.log(searchParams, "from home page");
 	await connectDb();
 	const data = await getProducts(searchParams);
-	console.log(data, "prdos");
+	// console.log(data, "prdos");
 
 	return (
 		<main>
@@ -51,11 +56,11 @@ export default async function Home({ searchParams }) {
 					</div>
 				</div>
 			</div>
-			{/* <Pagination
-				currentPage={currentPage}
-				totalPages={totalPages}
+			<Pagination
+				currentPage={data?.currentPage}
+				totalPages={data?.totalPages}
 				pathname={"/"}
-			/> */}
+			/>
 		</main>
 	);
 }
