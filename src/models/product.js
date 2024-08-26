@@ -45,6 +45,7 @@ const productSchema = new mongoose.Schema(
 				default: "",
 			},
 		},
+		// isArchived: false,
 	},
 	{ timestamps: true },
 );
