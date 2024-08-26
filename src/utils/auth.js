@@ -12,7 +12,7 @@ export const authOptions = {
 			async authorize(credentials, req) {
 				await connectDb();
 				const { email, password } = credentials;
-				console.log(email, "cred");
+				// console.log(email, "cred");
 
 				const user = await User.findOne({ email: email });
 
@@ -31,7 +31,7 @@ export const authOptions = {
 	],
 	callbacks: {
 		async signIn({ user }) {
-			console.log(user, "userFromSignIn");
+			// console.log(user, "userFromSignIn");
 
 			// const { email } = user;
 			// await connectDb();
@@ -43,7 +43,7 @@ export const authOptions = {
 			}
 		},
 		jwt: async ({ token, user }) => {
-			console.log(token.email, "emailInToken from jwt callback");
+			// console.log(token.email, "emailInToken from jwt callback");
 			await connectDb();
 			const userByEmail = await User.findOne({ email: token.email });
 			userByEmail.password = undefined;
@@ -53,7 +53,7 @@ export const authOptions = {
 		},
 		session: async ({ session, token }) => {
 			session.user = token.user;
-			console.log(session);
+			// console.log(session);
 
 			return session;
 		},
