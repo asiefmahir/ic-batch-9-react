@@ -21,14 +21,14 @@ const ProductCard = ({ product }) => {
 					) : (
 						<img
 							src={product?.image?.secure_url}
-							alt={product?.title}
+							alt={product?.name}
 						/>
 					)}
 				</figure>
 				{/* <h2>{product.title}</h2> */}
 			</div>
 			<div className="ingredient__title">
-				<h3>{product.title}</h3>
+				<h3>{product.name}</h3>
 			</div>
 			<div className="ingredient__content">
 				<p className="price">

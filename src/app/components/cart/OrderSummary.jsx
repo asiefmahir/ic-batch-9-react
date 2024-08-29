@@ -1,22 +1,19 @@
 "use client";
 
-import { useCart } from "@/contexts/Cart";
+import { useCart } from "@/app/contexts/Cart";
 import Image from "next/image";
 
 export default function OrderSummary() {
-	const { cartItems } = useCart();
+	const { cart } = useCart();
 
 	const calculateTotal = () => {
-		return cartItems?.reduce(
+		return cart?.reduce(
 			(total, item) => total + item?.price * item?.quantity,
 			0,
 		);
 	};
 
-	const totalItems = cartItems?.reduce(
-		(total, item) => total + item.quantity,
-		0,
-	);
+	const totalItems = cart?.reduce((total, item) => total + item.quantity, 0);
 
 	const itemOrItems = totalItems === 1 ? "item" : "items";
 
@@ -24,7 +21,7 @@ export default function OrderSummary() {
 		<div>
 			<p className="alert alert-primary">Order Summary</p>
 			<ul className="list-unstyled">
-				{cartItems?.map((product) => (
+				{cart?.map((product) => (
 					<div className="card mb-3" key={product?._id}>
 						<div className="row g-0 d-flex align-items-center p-1">
 							<div className="col-lg-3">
