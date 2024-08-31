@@ -20,9 +20,12 @@ export default function UserOrders() {
 
 	const fetchOrders = async () => {
 		try {
-			const response = await fetch(`${process.env.API}/user/orders`, {
-				method: "GET",
-			});
+			const response = await fetch(
+				`${process.env.VERCEL_URL}/user/orders`,
+				{
+					method: "GET",
+				},
+			);
 			const data = await response.json();
 			setOrders(data);
 			setLoading(false);
@@ -35,7 +38,7 @@ export default function UserOrders() {
 	const handleCancelOrder = async (orderId) => {
 		try {
 			const response = await fetch(
-				`${process.env.API}/user/orders/refund?orderId=${orderId}`,
+				`${process.env.VERCEL_URL}/user/orders/refund?orderId=${orderId}`,
 				{
 					method: "POST",
 				},

@@ -12,7 +12,7 @@ export default function ProductFilter({ searchParams }) {
 	const regSearchParams = useSearchParams();
 	console.log(regSearchParams, "reg");
 	const getCategories = () => {
-		fetch(`${process.env.API}/category`)
+		fetch(`${process.env.VERCEL_URL}/category`)
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);

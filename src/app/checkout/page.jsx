@@ -19,7 +19,7 @@ export default function Checkout() {
 			}));
 			payload.cartItems = cartData;
 			const response = await fetch(
-				`${process.env.API}/user/stripe/session`,
+				`${process.env.VERCEL_URL}/user/stripe/session`,
 				{
 					method: "POST",
 					body: JSON.stringify({ cartItems: cartData }),

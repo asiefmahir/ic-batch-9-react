@@ -16,7 +16,7 @@ const Register = () => {
 		e.preventDefault();
 		try {
 			setLoading(true);
-			const res = await fetch(`${process.env.API}/register`, {
+			const res = await fetch(`${process.env.VERCEL_URL}/register`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
