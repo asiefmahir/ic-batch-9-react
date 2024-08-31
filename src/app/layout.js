@@ -5,6 +5,7 @@ import CartProvider from "./contexts/Cart";
 import "./globals.css";
 import Nav from "./components/Nav";
 import "bootstrap-material-design/dist/css/bootstrap-material-design.min.css";
+import { Toaster } from "react-hot-toast";
 
 export default function RootLayout({ children }) {
 	return (
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
 				<SessionProvider>
 					<CartProvider>
 						<Nav />
+						<Toaster />
 						{children}
 					</CartProvider>
 				</SessionProvider>

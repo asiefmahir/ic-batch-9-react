@@ -19,7 +19,7 @@ export default function Checkout() {
 			}));
 			payload.cartItems = cartData;
 			const response = await fetch(
-				`http://localhost:3000/api/user/stripe/session`,
+				`${process.env.API}/user/stripe/session`,
 				{
 					method: "POST",
 					body: JSON.stringify({ cartItems: cartData }),
