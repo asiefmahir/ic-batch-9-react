@@ -25,7 +25,7 @@ const AddProduct = () => {
 
 	useEffect(() => {
 		const getCategories = () => {
-			fetch(`${process.env.API}/api/category`)
+			fetch(`https://${process.env.VERCEL_URL}/api/category`)
 				.then((res) => res.json())
 				.then((data) => {
 					setCategories(data);
@@ -36,7 +36,7 @@ const AddProduct = () => {
 	}, []);
 
 	const removePhoto = (image) => {
-		fetch(`${process.env.API}/api/admin/upload/image`, {
+		fetch(`https://${process.env.VERCEL_URL}/api/admin/upload/image`, {
 			method: "DELETE",
 			body: JSON.stringify({ public_id: image?.public_id }),
 			headers: {
@@ -67,10 +67,13 @@ const AddProduct = () => {
 					100,
 					0,
 					(uri) => {
-						fetch(`${process.env.API}/api/admin/upload/image`, {
-							method: "POST",
-							body: JSON.stringify({ image: uri }),
-						})
+						fetch(
+							`https://${process.env.VERCEL_URL}/api/admin/upload/image`,
+							{
+								method: "POST",
+								body: JSON.stringify({ image: uri }),
+							},
+						)
 							.then((res) => res.json())
 							.then((data) => {
 								setProduct({ ...product, image: data });
