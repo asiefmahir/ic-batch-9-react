@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import classes from "./login.module.css";
 import { signIn } from "next-auth/react";
 
@@ -11,8 +11,6 @@ export default function Login() {
 	const [errorMessage, setErrorMessage] = useState("");
 
 	const router = useRouter();
-	const searchParams = useSearchParams();
-	const callbackUrl = searchParams.get("callbackUrl") || "/";
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
@@ -31,7 +29,7 @@ export default function Login() {
 				setLoading(false);
 			} else {
 				// router.push("/");
-				router.push(callbackUrl);
+				router.push("/");
 			}
 		} catch (err) {
 			console.log(err);

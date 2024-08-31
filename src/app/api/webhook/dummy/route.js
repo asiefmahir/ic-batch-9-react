@@ -1,7 +1,9 @@
+export const dynamic = "force-dynamic";
 import { NextResponse } from "next/server";
 import connectDb from "@/utils/connectDb";
 import Product from "@/models/product";
 import Order from "@/models/order";
+// import { currentUser } from "@/utils/currentUser";
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -9,6 +11,7 @@ export async function POST(req) {
 	await connectDb();
 	const _raw = await req.text();
 	const sig = req.headers.get("stripe-signature");
+	// const user = await currentUser();
 
 	try {
 		// construct the event using stripe sdk
@@ -68,7 +71,8 @@ export async function POST(req) {
 					chargeId: id,
 					payment_intent: chargeSucceeded.payment_intent,
 					cartItems: cartItemsWithProductDetails,
-					amount: chargeSucceeded?.amount,
+					userId: event?.data?.object?.metadata?.userId,
+					amount: event?.data?.amount || event?.data?.object?.amount,
 				};
 				console.log(orderData.cartItems, "orderData");
 

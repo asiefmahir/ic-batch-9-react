@@ -32,7 +32,7 @@ export async function POST(req) {
 
 		const session = await stripe.checkout.sessions.create({
 			line_items: lineItems,
-			success_url: `http://localhost:3000/`,
+			success_url: `${process.env.DOMAIN}`,
 			client_reference_id: user._id,
 			mode: "payment",
 			payment_method_types: ["card"],

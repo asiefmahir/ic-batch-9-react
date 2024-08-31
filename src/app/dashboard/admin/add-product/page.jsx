@@ -2,7 +2,6 @@
 "use client";
 
 import { createProduct } from "@/app/actions/product";
-import next from "next";
 import { useState, useEffect } from "react";
 // import toast from "react-hot-toast";
 import Resizer from "react-image-file-resizer";
@@ -26,7 +25,7 @@ const AddProduct = () => {
 
 	useEffect(() => {
 		const getCategories = () => {
-			fetch(`http://localhost:3000/api/category`)
+			fetch(`${process.env.API}/category`)
 				.then((res) => res.json())
 				.then((data) => {
 					setCategories(data);
@@ -37,7 +36,7 @@ const AddProduct = () => {
 	}, []);
 
 	const removePhoto = (image) => {
-		fetch(`http://localhost:3000/api/admin/upload/image`, {
+		fetch(`${process.env.API}/admin/upload/image`, {
 			method: "DELETE",
 			body: JSON.stringify({ public_id: image?.public_id }),
 			headers: {
@@ -68,7 +67,7 @@ const AddProduct = () => {
 					100,
 					0,
 					(uri) => {
-						fetch(`http://localhost:3000/api/admin/upload/image`, {
+						fetch(`${process.env.API}/admin/upload/image`, {
 							method: "POST",
 							body: JSON.stringify({ image: uri }),
 						})
