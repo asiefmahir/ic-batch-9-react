@@ -2,17 +2,20 @@
 import { useEffect, useState } from "react";
 import { priceRanges } from "@/utils/filterData";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 // import Stars from "@/components/product/Stars";
 
 export default function ProductFilter({ searchParams }) {
 	const [categories, setCategories] = useState([]);
 	const pathname = "/shop";
 	const { minPrice, maxPrice, category } = searchParams;
-	const regSearchParams = useSearchParams();
-	console.log(regSearchParams, "reg");
-	const getCategories = () => {
-		fetch(`${process.env.API}/api/category`)
+	// const regSearchParams = useSearchParams();
+	// console.log(regSearchParams, "reg");
+	const getCategories = async () => {
+		fetch(`${process.env.API}/api/category`, {
+			method: "GET",
+			next: { revalidate: 1 },
+		})
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
