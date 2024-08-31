@@ -12,15 +12,12 @@ export default function ProductFilter({ searchParams }) {
 	// const regSearchParams = useSearchParams();
 	// console.log(regSearchParams, "reg");
 	const getCategories = async () => {
-		fetch(`${process.env.API}/api/category`, {
+		const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/category`, {
 			method: "GET",
 			next: { revalidate: 1 },
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				console.log(data);
-				setCategories(data);
-			});
+		});
+		const data = await res.json();
+		setCategories(data);
 	};
 
 	useEffect(() => {
