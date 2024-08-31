@@ -11,7 +11,7 @@ const getProducts = async (searchParams) => {
 	// console.log(searchQuery, "sQueyr");
 
 	const res = await fetch(
-		`${process.env.VERCEL_URL}/product?${searchQuery}`,
+		`https://${process.env.VERCEL_URL}/api/product?${searchQuery}`,
 		{
 			method: "GET",
 			next: { revalidate: 1 },

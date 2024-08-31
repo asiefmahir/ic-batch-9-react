@@ -13,7 +13,7 @@ async function getProductsForShop(searchParams) {
 
 	try {
 		const response = await fetch(
-			`${process.env.VERCEL_URL}/product/filters?${searchQuery}`,
+			`https://${process.env.VERCEL_URL}/api/product/filters?${searchQuery}`,
 			{
 				method: "GET",
 				cache: "no-store",

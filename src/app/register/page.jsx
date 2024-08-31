@@ -16,13 +16,16 @@ const Register = () => {
 		e.preventDefault();
 		try {
 			setLoading(true);
-			const res = await fetch(`${process.env.VERCEL_URL}/register`, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
+			const res = await fetch(
+				`https://${process.env.VERCEL_URL}/api/register`,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({ name, email, password }),
 				},
-				body: JSON.stringify({ name, email, password }),
-			});
+			);
 			const data = await res.json();
 			if (!res.ok) {
 				setLoading(false);
