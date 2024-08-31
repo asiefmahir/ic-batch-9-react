@@ -12,10 +12,13 @@ async function getProductsForShop(searchParams) {
 	}).toString();
 
 	try {
-		const response = await fetch(`api/product/filters?${searchQuery}`, {
-			method: "GET",
-			cache: "no-store",
-		});
+		const response = await fetch(
+			`https://${process.env.VERCEL_URL}/api/product/filters?${searchQuery}`,
+			{
+				method: "GET",
+				cache: "no-store",
+			},
+		);
 		if (!response.ok) {
 			throw new Error("Failed to fetch products");
 		}

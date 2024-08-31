@@ -17,6 +17,8 @@ const getProducts = async (searchParams) => {
 			next: { revalidate: 1 },
 		},
 	);
+	console.log(res, "res");
+	console.log(await res.json(), "result");
 	if (!res.ok) {
 		throw new Error("Failed to fetch products");
 	}
