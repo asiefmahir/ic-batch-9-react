@@ -8,6 +8,9 @@ const nextConfig = {
 			},
 		],
 	},
+	env: {
+		NEXT_PUBLIC_API: process.env.NEXT_PUBLIC_API
+	}
 	// env: {
 	// 	DB_URI: process.env.MONGODB_URI,
 	// 	API: process.env.VERCEL_URL,
