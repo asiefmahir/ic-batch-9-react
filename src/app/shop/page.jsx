@@ -13,7 +13,7 @@ async function getProductsForShop(searchParams) {
 
 	try {
 		const response = await fetch(
-			`${process.env.NEXT_PUBLIC_API}/api/product/filters?${searchQuery}`,
+			`${process.env.API}/api/product/filters?${searchQuery}`,
 			{
 				method: "GET",
 				cache: "no-store",
