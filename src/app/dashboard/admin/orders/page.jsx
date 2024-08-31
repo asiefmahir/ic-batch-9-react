@@ -23,7 +23,7 @@ export default function AdminOrders({ searchParams }) {
 	const fetchOrders = async () => {
 		try {
 			const response = await fetch(
-				`https://${process.env.VERCEL_URL}/api/admin/orders?${searchQuery}`,
+				`${process.env.API}/api/admin/orders?${searchQuery}`,
 				{
 					method: "GET",
 					next: { revalidate: 1 },
@@ -54,7 +54,7 @@ export default function AdminOrders({ searchParams }) {
 	const handleStatusChange = async (newStatus, orderId) => {
 		try {
 			const response = await fetch(
-				`https://${process.env.VERCEL_URL}/api/admin/orders/${orderId}`,
+				`${process.env.API}/api/admin/orders/${orderId}`,
 				{
 					method: "PUT",
 					body: JSON.stringify({ delivery_status: newStatus }),
