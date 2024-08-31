@@ -10,13 +10,10 @@ const getProducts = async (searchParams) => {
 	}).toString();
 	// console.log(searchQuery, "sQueyr");
 
-	const res = await fetch(
-		`https://${process.env.VERCEL_URL}/api/product?${searchQuery}`,
-		{
-			method: "GET",
-			next: { revalidate: 1 },
-		},
-	);
+	const res = await fetch(`${process.env.API}/api/product?${searchQuery}`, {
+		method: "GET",
+		next: { revalidate: 1 },
+	});
 	if (!res.ok) {
 		throw new Error("Failed to fetch products");
 	}
